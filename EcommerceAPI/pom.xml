@@ -92,5 +92,55 @@
 			</plugin>
 		</plugins>
 	</build>
+<!-- NEW: everything below is added -->
+	<profiles>
+		<profile>
+			<id>metrics</id>
+			<build>
+				<plugins>
+					<!-- PMD -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-pmd-plugin</artifactId>
+						<version>3.21.2</version>
+						<configuration>
+							<targetJdk>17</targetJdk>
+							<rulesets>
+								<ruleset>category/java/bestpractices.xml</ruleset>
+								<ruleset>category/java/errorprone.xml</ruleset>
+								<ruleset>category/java/codestyle.xml</ruleset>
+							</rulesets>
+							<printFailingErrors>false</printFailingErrors>
+							<format>xml</format>
+						</configuration>
+					</plugin>
 
+					<!-- Checkstyle -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-checkstyle-plugin</artifactId>
+						<version>3.5.0</version>
+						<configuration>
+							<configLocation>sun_checks.xml</configLocation>
+							<consoleOutput>true</consoleOutput>
+							<failsOnError>false</failsOnError>
+							<violationSeverity>warning</violationSeverity>
+						</configuration>
+					</plugin>
+
+					<!-- SpotBugs -->
+					<plugin>
+						<groupId>com.github.spotbugs</groupId>
+						<artifactId>spotbugs-maven-plugin</artifactId>
+						<version>4.8.6.5</version>
+						<configuration>
+							<effort>Max</effort>
+							<threshold>Medium</threshold>
+							<xmlOutput>true</xmlOutput>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
