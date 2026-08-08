@@ -6,17 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name="category")
-@Getter
-@Setter
-@NoArgsConstructor
-@ToString
 public class Category {
 	@Id //PK
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,11 +19,45 @@ public class Category {
 	@Column(name="catdesc",length=100,nullable = false)
 	private String catdesc;
 
-public Category(String catname, String catdesc) {
-	super();
-	this.catname = catname;
-	this.catdesc = catdesc;
-}
+	public Category() {
+	}
 
+	public Category(String catname, String catdesc) {
+		super();
+		this.catname = catname;
+		this.catdesc = catdesc;
+	}
 
+	public int getCatid() {
+		return catid;
+	}
+
+	public void setCatid(int catid) {
+		this.catid = catid;
+	}
+
+	public String getCatname() {
+		return catname;
+	}
+
+	public void setCatname(String catname) {
+		this.catname = catname;
+	}
+
+	public String getCatdesc() {
+		return catdesc;
+	}
+
+	public void setCatdesc(String catdesc) {
+		this.catdesc = catdesc;
+	}
+
+	@Override
+	public String toString() {
+		return "Category{" +
+				"catid=" + catid +
+				", catname='" + catname + '\'' +
+				", catdesc='" + catdesc + '\'' +
+				'}';
+	}
 }
